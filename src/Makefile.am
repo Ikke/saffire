@@ -2,6 +2,9 @@
 # INIT
 ########################################################################
 
+TESTS=utmain
+noinst_BINARIES=utmain
+
 # Set our optimization / debug flags
 if DEBUG
   AM_CFLAGS = -ggdb  -O0 -D__DEBUG
@@ -176,7 +179,11 @@ SAFFIRE_LIBS = \
 
 
 
-bin_PROGRAMS = saffire
+bin_PROGRAMS = saffire utmain
+
+utmain_LDADD = $(SAFFIRE_LIBS) -lcunit
+
+utmain_SOURCES = ../unittests/core/main.c
 
 saffire_LDADD = $(SAFFIRE_LIBS) $(edit_LIBS) $(augeas_LIBS) -lpthread
 
